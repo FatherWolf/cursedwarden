@@ -106,12 +106,20 @@ const ContactPage: React.FC = () => {
           name="description"
           content="Request a free quote for custom web development, SEO, digital marketing, and branding from Cursed Warden Labs."
         />
-        <meta
-          name="keywords"
-          content="contact web developer, request quote, software development, SEO quote, logo design quote"
-        />
-        <link rel="canonical" href="https://cursedwardenlabs.com/contact" />
-      </Helmet>
+      <meta
+        name="keywords"
+        content="contact web developer, request quote, software development, SEO quote, logo design quote"
+      />
+      <link rel="canonical" href="https://cursedwardenlabs.com/contact" />
+      <meta property="og:title" content="Cursed Warden Labs | Contact & Quote" />
+      <meta
+        property="og:description"
+        content="Request a free quote for custom web development, SEO, digital marketing, and branding from Cursed Warden Labs."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://cursedwardenlabs.com/contact" />
+      <meta property="og:image" content="https://cursedwardenlabs.com/logo512.png" />
+    </Helmet>
 
       <Box
         component="main"

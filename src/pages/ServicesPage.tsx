@@ -24,6 +24,14 @@ const ServicesPage: React.FC = () => (
         content="website design, Figma prototyping, React development, WordPress, SEO services, digital marketing, project planning"
       />
       <link rel="canonical" href="https://cursedwardenlabs.com/services" />
+      <meta property="og:title" content="Cursed Warden Labs | Our Services" />
+      <meta
+        property="og:description"
+        content="Our Services: Website design & development, WordPress integration, SEO & digital marketing, and client-centric collaboration. Learn how we plan, prototype, and build custom solutions."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://cursedwardenlabs.com/services" />
+      <meta property="og:image" content="https://cursedwardenlabs.com/logo512.png" />
     </Helmet>
 
     <Box

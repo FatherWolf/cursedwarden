@@ -1,6 +1,7 @@
 // src/pages/HomePage.tsx
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
   Container,
@@ -59,6 +60,14 @@ const HomePage: React.FC = () => (
         content="custom web development, WordPress design, React developer, Node.js backend, SEO, digital marketing"
       />
       <link rel="canonical" href="https://cursedwardenlabs.com/" />
+      <meta property="og:title" content="Cursed Warden Labs | Bespoke Web & Software Dev" />
+      <meta
+        property="og:description"
+        content="Cursed Warden Labs builds custom React, MUI & WordPress websites, Node.js backends, and marketing strategies that help businesses get up to 80% more traffic."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://cursedwardenlabs.com/" />
+      <meta property="og:image" content="https://cursedwardenlabs.com/logo512.png" />
     </Helmet>
 
     <Box
@@ -75,6 +84,7 @@ const HomePage: React.FC = () => (
             component="img"
             src={Largelogo}
             alt="Cursed Warden Labs Logo"
+            loading="lazy"
             sx={{
               width: '80%',
               maxWidth: 300,
@@ -107,9 +117,10 @@ const HomePage: React.FC = () => (
       {/* GET QUOTE BUTTON */}
       <Box sx={{ textAlign: 'center', my: { xs: 4, md: 6 } }}>
         <Button
+          component={RouterLink}
+          to="/contact"
           variant="contained"
           size="large"
-          href="/contact"
           sx={{
             backgroundColor: '#c3f73a',
             color: '#000',
@@ -195,6 +206,7 @@ const HomePage: React.FC = () => (
                     height="180"
                     image={proj.image}
                     alt={proj.title}
+                    loading="lazy"
                   />
                   <CardContent>
                     <Typography variant="h6" sx={{ color: '#c3f73a' }}>
@@ -222,13 +234,14 @@ const HomePage: React.FC = () => (
             presence.
           </Typography>
           <Button
+            component={RouterLink}
+            to="/contact"
             variant="contained"
             sx={{
               backgroundColor: '#c3f73a',
               color: '#000',
               '&:hover': { backgroundColor: '#a6e12f' },
             }}
-            href="/contact"
           >
             Contact Us
           </Button>
