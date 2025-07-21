@@ -10,31 +10,46 @@ import {
   Card,
   CardContent,
   CardMedia,
+  CardActionArea,
 } from '@mui/material';
 import Largelogo from '../Images/Largelogo.png';
+import keithImg from '../Images/keithimg.png';
+import hdfImg from '../Images/hdfimg.png';
+import gammaImg from '../Images/gamma.png';
 
 const services = [
   {
-    title: 'Custom Web Development',
+    title: 'Custom Web & WordPress Development',
     description:
-      'Tailored web applications built with React, Node.js, and modern technologies.',
+      'From bespoke React & MUI single-page applications to feature-rich WordPress sites, we leverage Node.js backends and modern frameworks to deliver high-performance, scalable web solutions tailored to your unique business needs.',
   },
   {
-    title: 'UI/UX Design',
+    title: 'SEO & Digital Marketing',
     description:
-      'User-centric interfaces and experiences that engage and convert.',
+      'We boost your online visibility with targeted search engine optimization, Google ranking strategies, and comprehensive marketing campaigns designed to drive traffic, increase conversions, and grow your brand.',
   },
   {
-    title: 'Consulting & Strategy',
+    title: 'Client-Centric Collaboration',
     description:
-      'Technical audits, architecture planning, and growth strategies.',
+      'Whether you’re a nimble startup or a large enterprise, we partner with you every step of the way—planning, transparent communication, and ongoing support—to ensure your project’s success and exceed expectations.',
   },
 ];
 
 const projects = [
-  { title: 'Project Alpha', image: '/images/alpha.png' },
-  { title: 'Project Beta', image: '/images/beta.png' },
-  { title: 'Project Gamma', image: '/images/gamma.png' },
+  {
+    title: "Keith's Roofing",
+    image: keithImg,
+    link: 'https://keith.cursedwardenlabs.com',
+  },
+  {
+    title: 'HDF Hauling',
+    image: hdfImg,
+    link: 'https://hdfhauling.com',
+  },
+  {
+    title: 'Project Gamma',
+    image: keithImg,
+  },
 ];
 
 const HomePage: React.FC = () => {
@@ -53,6 +68,7 @@ const HomePage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', form);
+    // integrate with your email service here
   };
 
   return (
@@ -60,7 +76,7 @@ const HomePage: React.FC = () => {
       component="main"
       sx={{ bgcolor: '#000', color: '#fff', minHeight: '100vh' }}
     >
-      {/* Hero / Contact Form Section */}
+      {/* Hero + Contact Form */}
       <Box component="section" sx={{ py: { xs: 6, md: 12 } }}>
         <Container maxWidth="lg">
           <Box
@@ -68,11 +84,11 @@ const HomePage: React.FC = () => {
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
               alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'space-around' },
+              justifyContent: { xs: 'center', md: 'space-between' },
               gap: { xs: 4, md: 8 },
             }}
           >
-            {/* Left: Hero Image */}
+            {/* Hero Image */}
             <Box
               sx={{
                 flex: '0 0 auto',
@@ -87,31 +103,24 @@ const HomePage: React.FC = () => {
                 sx={{
                   width: '100%',
                   height: 'auto',
-                  display: 'block',
                   mx: 'auto',
+                  display: 'block',
                 }}
               />
             </Box>
 
-            {/* Right: Contact Form */}
+            {/* Contact Form */}
             <Box
               component="form"
               onSubmit={handleSubmit}
               noValidate
-              sx={{
-                width: { xs: '100%', sm: 360 },
-                maxWidth: 360,
-              }}
+              sx={{ width: { xs: '100%', sm: 360 }, maxWidth: 360 }}
             >
               <Typography
                 variant="h5"
-                sx={{
-                  color: '#c3f73a',
-                  mb: 2,
-                  textAlign: { xs: 'center', md: 'left' },
-                }}
+                sx={{ color: '#c3f73a', mb: 2, textAlign: 'center' }}
               >
-                Let us know your project
+                Let us know what your future holds!
               </Typography>
               <Stack spacing={2}>
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
@@ -213,7 +222,7 @@ const HomePage: React.FC = () => {
               <Card
                 key={svc.title}
                 elevation={0}
-                sx={{ backgroundColor: '#1c1018', color: '#fff', p: 2 }}
+                sx={{ backgroundColor: '#1c1018', p: 2 }}
               >
                 <CardContent>
                   <Typography variant="h6" sx={{ color: '#c3f73a', mb: 1 }}>
@@ -258,18 +267,42 @@ const HomePage: React.FC = () => {
                   overflow: 'hidden',
                 }}
               >
-                <CardMedia
-                  component="img"
-                  height="180"
-                  image={proj.image}
-                  alt={proj.title}
-                  loading="lazy"
-                />
-                <CardContent>
-                  <Typography variant="h6" sx={{ color: '#c3f73a' }}>
-                    {proj.title}
-                  </Typography>
-                </CardContent>
+                {proj.link ? (
+                  <CardActionArea
+                    component="a"
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <CardMedia
+                      component="img"
+                      height="180"
+                      image={proj.image}
+                      alt={proj.title}
+                      loading="lazy"
+                    />
+                    <CardContent>
+                      <Typography variant="h6" sx={{ color: '#c3f73a' }}>
+                        {proj.title}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                ) : (
+                  <>
+                    <CardMedia
+                      component="img"
+                      height="180"
+                      image={proj.image}
+                      alt={proj.title}
+                      loading="lazy"
+                    />
+                    <CardContent>
+                      <Typography variant="h6" sx={{ color: '#c3f73a' }}>
+                        {proj.title}
+                      </Typography>
+                    </CardContent>
+                  </>
+                )}
               </Card>
             ))}
           </Box>
