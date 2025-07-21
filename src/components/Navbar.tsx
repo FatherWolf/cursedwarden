@@ -49,6 +49,7 @@ const Navbar: React.FC = () => {
           component="img"
           src={Logo}
           alt="Cursed Warden Labs Logo"
+          loading="lazy"
           sx={{ height: 40, mx: 'auto', display: 'block' }}
         />
       </Box>
@@ -95,12 +96,13 @@ const Navbar: React.FC = () => {
               textDecoration: 'none',
             }}
           >
-            <Box
-              component="img"
-              src={Logo}
-              alt="Cursed Warden Labs Logo"
-              sx={{ height: 40 }}
-            />
+          <Box
+            component="img"
+            src={Logo}
+            alt="Cursed Warden Labs Logo"
+            loading="lazy"
+            sx={{ height: 40 }}
+          />
           </Box>
 
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -138,4 +140,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);
