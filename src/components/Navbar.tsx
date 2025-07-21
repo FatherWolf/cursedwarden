@@ -19,7 +19,6 @@ import Logo from '../Images/Logo.png';
 const navItems = [
   { text: 'Home', to: '/' },
   { text: 'Services', to: '/services' },
-  { text: 'Portfolio', to: '/portfolio' },
   { text: 'Contact', to: '/contact' },
 ];
 

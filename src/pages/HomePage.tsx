@@ -1,12 +1,11 @@
 // src/pages/HomePage.tsx
-import React, { useState } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   Box,
   Container,
   Typography,
   Button,
-  TextField,
-  Stack,
   Card,
   CardContent,
   CardMedia,
@@ -15,23 +14,23 @@ import {
 import Largelogo from '../Images/Largelogo.png';
 import keithImg from '../Images/keithimg.png';
 import hdfImg from '../Images/hdfimg.png';
-import gammaImg from '../Images/gamma.png';
+import gamma from '../Images/gamma.png';
 
 const services = [
   {
     title: 'Custom Web & WordPress Development',
     description:
-      'From bespoke React & MUI single-page applications to feature-rich WordPress sites, we leverage Node.js backends and modern frameworks to deliver high-performance, scalable web solutions tailored to your unique business needs.',
+      'From React & MUI single-page apps to WordPress sites, we deliver scalable, easy-to-manage web solutions.',
   },
   {
     title: 'SEO & Digital Marketing',
     description:
-      'We boost your online visibility with targeted search engine optimization, Google ranking strategies, and comprehensive marketing campaigns designed to drive traffic, increase conversions, and grow your brand.',
+      'Improve your Google ranking and run targeted ad campaigns that drive real customer growth.',
   },
   {
     title: 'Client-Centric Collaboration',
     description:
-      'Whether you’re a nimble startup or a large enterprise, we partner with you every step of the way—planning, transparent communication, and ongoing support—to ensure your project’s success and exceed expectations.',
+      'Transparent planning, regular check-ins, and post-launch support—every step of the way.',
   },
 ];
 
@@ -46,162 +45,67 @@ const projects = [
     image: hdfImg,
     link: 'https://hdfhauling.com',
   },
-  {
-    title: 'Project Gamma',
-    image: keithImg,
-  },
 ];
 
-const HomePage: React.FC = () => {
-  const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    message: '',
-  });
+const HomePage: React.FC = () => (
+  <>
+    <Helmet>
+      <title>Cursed Warden Labs | Bespoke Web & Software Dev</title>
+      <meta
+        name="description"
+        content="Cursed Warden Labs builds custom React, MUI & WordPress websites, Node.js backends, and marketing strategies that help businesses get up to 80% more traffic."
+      />
+      <meta
+        name="keywords"
+        content="custom web development, WordPress design, React developer, Node.js backend, SEO, digital marketing"
+      />
+      <link rel="canonical" href="https://cursedwardenlabs.com/" />
+    </Helmet>
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', form);
-    // integrate with your email service here
-  };
-
-  return (
     <Box
       component="main"
       sx={{ bgcolor: '#000', color: '#fff', minHeight: '100vh' }}
     >
-      {/* Hero + Contact Form */}
-      <Box component="section" sx={{ py: { xs: 6, md: 12 } }}>
-        <Container maxWidth="lg">
+      {/* HERO */}
+      <Box
+        component="section"
+        sx={{ py: { xs: 8, md: 12 }, textAlign: 'center' }}
+      >
+        <Container maxWidth="sm">
           <Box
+            component="img"
+            src={Largelogo}
+            alt="Cursed Warden Labs Logo"
             sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems: 'center',
-              justifyContent: { xs: 'center', md: 'space-between' },
-              gap: { xs: 4, md: 8 },
+              width: '80%',
+              maxWidth: 300,
+              mb: 4,
+              mx: 'auto',
+              display: 'block',
             }}
+          />
+          <Typography
+            variant="h2"
+            component="h1"
+            sx={{ fontWeight: 'bold', color: '#c3f73a', mb: 2 }}
           >
-            {/* Hero Image */}
-            <Box
-              sx={{
-                flex: '0 0 auto',
-                width: { xs: 200, sm: 300, md: 400 },
-                textAlign: 'center',
-              }}
-            >
-              <Box
-                component="img"
-                src={Largelogo}
-                alt="Cursed Warden Labs"
-                sx={{
-                  width: '100%',
-                  height: 'auto',
-                  mx: 'auto',
-                  display: 'block',
-                }}
-              />
+            Let’s Bring Your Website to Life
+          </Typography>
+          <Typography variant="h6" sx={{ color: '#ddd' }}>
+            Businesses with professional websites see up to{' '}
+            <Box component="span" sx={{ fontWeight: 'bold', color: '#c3f73a' }}>
+              80% more traffic
+            </Box>{' '}
+            and{' '}
+            <Box component="span" sx={{ fontWeight: 'bold', color: '#c3f73a' }}>
+              55% higher revenue
             </Box>
-
-            {/* Contact Form */}
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{ width: { xs: '100%', sm: 360 }, maxWidth: 360 }}
-            >
-              <Typography
-                variant="h5"
-                sx={{ color: '#c3f73a', mb: 2, textAlign: 'center' }}
-              >
-                Let us know what your future holds!
-              </Typography>
-              <Stack spacing={2}>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-                  <TextField
-                    fullWidth
-                    required
-                    name="firstName"
-                    label="First Name"
-                    value={form.firstName}
-                    onChange={handleChange}
-                    InputProps={{
-                      sx: { backgroundColor: '#1c1018', color: '#fff' },
-                    }}
-                  />
-                  <TextField
-                    fullWidth
-                    required
-                    name="lastName"
-                    label="Last Name"
-                    value={form.lastName}
-                    onChange={handleChange}
-                    InputProps={{
-                      sx: { backgroundColor: '#1c1018', color: '#fff' },
-                    }}
-                  />
-                </Stack>
-                <TextField
-                  fullWidth
-                  required
-                  name="phone"
-                  label="Phone Number"
-                  value={form.phone}
-                  onChange={handleChange}
-                  InputProps={{
-                    sx: { backgroundColor: '#1c1018', color: '#fff' },
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  required
-                  name="email"
-                  label="Email Address"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  InputProps={{
-                    sx: { backgroundColor: '#1c1018', color: '#fff' },
-                  }}
-                />
-                <TextField
-                  fullWidth
-                  required
-                  name="message"
-                  label="Your Message"
-                  multiline
-                  minRows={4}
-                  value={form.message}
-                  onChange={handleChange}
-                  InputProps={{
-                    sx: { backgroundColor: '#1c1018', color: '#fff' },
-                  }}
-                />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  sx={{
-                    backgroundColor: '#c3f73a',
-                    color: '#000',
-                    py: 1.5,
-                    '&:hover': { backgroundColor: '#a6e12f' },
-                  }}
-                >
-                  Send Message
-                </Button>
-              </Stack>
-            </Box>
-          </Box>
+            .
+          </Typography>
         </Container>
       </Box>
 
-      {/* Services Section */}
+      {/* SERVICES */}
       <Box component="section" sx={{ py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography
@@ -222,7 +126,7 @@ const HomePage: React.FC = () => {
               <Card
                 key={svc.title}
                 elevation={0}
-                sx={{ backgroundColor: '#1c1018', p: 2 }}
+                sx={{ bgcolor: '#1c1018', color: '#fff', p: 2 }}
               >
                 <CardContent>
                   <Typography variant="h6" sx={{ color: '#c3f73a', mb: 1 }}>
@@ -236,7 +140,7 @@ const HomePage: React.FC = () => {
         </Container>
       </Box>
 
-      {/* Portfolio Section */}
+      {/* FEATURED PROJECTS */}
       <Box component="section" sx={{ py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
           <Typography
@@ -244,28 +148,25 @@ const HomePage: React.FC = () => {
             align="center"
             sx={{ color: '#c3f73a', mb: 4 }}
           >
-            Featured Projects
+            Recent and Ongoing Projects
           </Typography>
           <Box
             sx={{
               display: 'grid',
-              gridTemplateColumns: {
-                xs: '1fr',
-                sm: 'repeat(2,1fr)',
-                md: 'repeat(3,1fr)',
-              },
+              // only two columns, even on desktop
+              gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
               gap: 4,
+              // center the whole grid and cap its max width
+              justifyContent: 'center',
+              maxWidth: 800,
+              mx: 'auto',
             }}
           >
             {projects.map((proj) => (
               <Card
                 key={proj.title}
                 elevation={0}
-                sx={{
-                  backgroundColor: '#1c1018',
-                  color: '#fff',
-                  overflow: 'hidden',
-                }}
+                sx={{ bgcolor: '#1c1018', overflow: 'hidden' }}
               >
                 {proj.link ? (
                   <CardActionArea
@@ -279,7 +180,6 @@ const HomePage: React.FC = () => {
                       height="180"
                       image={proj.image}
                       alt={proj.title}
-                      loading="lazy"
                     />
                     <CardContent>
                       <Typography variant="h6" sx={{ color: '#c3f73a' }}>
@@ -294,7 +194,6 @@ const HomePage: React.FC = () => {
                       height="180"
                       image={proj.image}
                       alt={proj.title}
-                      loading="lazy"
                     />
                     <CardContent>
                       <Typography variant="h6" sx={{ color: '#c3f73a' }}>
@@ -308,8 +207,7 @@ const HomePage: React.FC = () => {
           </Box>
         </Container>
       </Box>
-
-      {/* Call-to-Action Section */}
+      {/* CTA */}
       <Box
         component="section"
         sx={{ py: { xs: 8, md: 12 }, textAlign: 'center' }}
@@ -319,8 +217,8 @@ const HomePage: React.FC = () => {
             Ready to Get Started?
           </Typography>
           <Typography variant="body1" paragraph>
-            Let’s build something amazing together. Reach out and let's talk
-            about your next project.
+            Reach out now and let's discuss how we can transform your online
+            presence.
           </Typography>
           <Button
             variant="contained"
@@ -329,13 +227,14 @@ const HomePage: React.FC = () => {
               color: '#000',
               '&:hover': { backgroundColor: '#a6e12f' },
             }}
+            href="/contact"
           >
             Contact Us
           </Button>
         </Container>
       </Box>
     </Box>
-  );
-};
+  </>
+);
 
 export default HomePage;
