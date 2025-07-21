@@ -14,7 +14,6 @@ import {
 import Largelogo from '../Images/Largelogo.png';
 import keithImg from '../Images/keithimg.png';
 import hdfImg from '../Images/hdfimg.png';
-import gamma from '../Images/gamma.png';
 
 const services = [
   {
@@ -105,6 +104,25 @@ const HomePage: React.FC = () => (
         </Container>
       </Box>
 
+      {/* GET QUOTE BUTTON */}
+      <Box sx={{ textAlign: 'center', my: { xs: 4, md: 6 } }}>
+        <Button
+          variant="contained"
+          size="large"
+          href="/contact"
+          sx={{
+            backgroundColor: '#c3f73a',
+            color: '#000',
+            px: { xs: 4, md: 6 },
+            py: { xs: 1.5, md: 2 },
+            fontSize: { xs: '1rem', md: '1.25rem' },
+            '&:hover': { backgroundColor: '#a6e12f' },
+          }}
+        >
+          Get Quote
+        </Button>
+      </Box>
+
       {/* SERVICES */}
       <Box component="section" sx={{ py: { xs: 6, md: 10 } }}>
         <Container maxWidth="lg">
@@ -153,10 +171,8 @@ const HomePage: React.FC = () => (
           <Box
             sx={{
               display: 'grid',
-              // only two columns, even on desktop
-              gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
+              gridTemplateColumns: { xs: '1fr', sm: 'repeat(2,1fr)' },
               gap: 4,
-              // center the whole grid and cap its max width
               justifyContent: 'center',
               maxWidth: 800,
               mx: 'auto',
@@ -168,46 +184,31 @@ const HomePage: React.FC = () => (
                 elevation={0}
                 sx={{ bgcolor: '#1c1018', overflow: 'hidden' }}
               >
-                {proj.link ? (
-                  <CardActionArea
-                    component="a"
-                    href={proj.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <CardMedia
-                      component="img"
-                      height="180"
-                      image={proj.image}
-                      alt={proj.title}
-                    />
-                    <CardContent>
-                      <Typography variant="h6" sx={{ color: '#c3f73a' }}>
-                        {proj.title}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                ) : (
-                  <>
-                    <CardMedia
-                      component="img"
-                      height="180"
-                      image={proj.image}
-                      alt={proj.title}
-                    />
-                    <CardContent>
-                      <Typography variant="h6" sx={{ color: '#c3f73a' }}>
-                        {proj.title}
-                      </Typography>
-                    </CardContent>
-                  </>
-                )}
+                <CardActionArea
+                  component="a"
+                  href={proj.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <CardMedia
+                    component="img"
+                    height="180"
+                    image={proj.image}
+                    alt={proj.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" sx={{ color: '#c3f73a' }}>
+                      {proj.title}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
               </Card>
             ))}
           </Box>
         </Container>
       </Box>
-      {/* CTA */}
+
+      {/* FINAL CTA */}
       <Box
         component="section"
         sx={{ py: { xs: 8, md: 12 }, textAlign: 'center' }}
@@ -216,8 +217,8 @@ const HomePage: React.FC = () => (
           <Typography variant="h4" gutterBottom sx={{ color: '#c3f73a' }}>
             Ready to Get Started?
           </Typography>
-          <Typography variant="body1" paragraph>
-            Reach out now and let's discuss how we can transform your online
+          <Typography variant="body1" paragraph sx={{ color: '#ddd' }}>
+            Reach out now and let’s discuss how we can transform your online
             presence.
           </Typography>
           <Button
