@@ -1,5 +1,15 @@
-body {
+/* Make the page truly black edge-to-edge */
+html,
+body,
+#root {
   margin: 0;
+  padding: 0;
+  background-color: #000000;
+  height: 100%;
+}
+
+/* Your existing body styles */
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,6 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Your existing code block font */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

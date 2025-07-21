@@ -1,19 +1,24 @@
+// src/index.tsx
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import { createRoot } from 'react-dom/client';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { theme } from './theme/theme';
+import { HelmetProvider } from 'react-helmet-async';
+import './index.css';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const container = document.getElementById('root');
+if (!container) throw new Error('Failed to find root element');
+
+const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
