@@ -60,14 +60,6 @@ const HomePage: React.FC = () => (
         content="custom web development, WordPress design, React developer, Node.js backend, SEO, digital marketing"
       />
       <link rel="canonical" href="https://cursedwardenlabs.com/" />
-      <meta property="og:title" content="Cursed Warden Labs | Bespoke Web & Software Dev" />
-      <meta
-        property="og:description"
-        content="Cursed Warden Labs builds custom React, MUI & WordPress websites, Node.js backends, and marketing strategies that help businesses get up to 80% more traffic."
-      />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://cursedwardenlabs.com/" />
-      <meta property="og:image" content="https://cursedwardenlabs.com/logo512.png" />
     </Helmet>
 
     <Box
@@ -84,7 +76,6 @@ const HomePage: React.FC = () => (
             component="img"
             src={Largelogo}
             alt="Cursed Warden Labs Logo"
-            loading="lazy"
             sx={{
               width: '80%',
               maxWidth: 300,
@@ -155,13 +146,15 @@ const HomePage: React.FC = () => (
               <Card
                 key={svc.title}
                 elevation={0}
-                sx={{ bgcolor: '#1c1018', color: '#fff', p: 2 }}
+                sx={{ bgcolor: '#1c1018', p: 2 }}
               >
                 <CardContent>
                   <Typography variant="h6" sx={{ color: '#c3f73a', mb: 1 }}>
                     {svc.title}
                   </Typography>
-                  <Typography>{svc.description}</Typography>
+                  <Typography sx={{ color: '#fff' }}>
+                    {svc.description}
+                  </Typography>
                 </CardContent>
               </Card>
             ))}
@@ -206,7 +199,6 @@ const HomePage: React.FC = () => (
                     height="180"
                     image={proj.image}
                     alt={proj.title}
-                    loading="lazy"
                   />
                   <CardContent>
                     <Typography variant="h6" sx={{ color: '#c3f73a' }}>

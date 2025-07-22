@@ -4,6 +4,7 @@ import {
   AppBar,
   Toolbar,
   IconButton,
+  Typography,
   Box,
   Button,
   Drawer,
@@ -14,52 +15,33 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link as RouterLink } from 'react-router-dom';
-import Logo from '../Images/Logo.png';
 
 const navItems = [
   { text: 'Home', to: '/' },
+  { text: 'About', to: '/about' }, // ← new
   { text: 'Services', to: '/services' },
   { text: 'Contact', to: '/contact' },
 ];
 
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
-      sx={{
-        textAlign: 'center',
-        bgcolor: '#000000',
-        height: '100%',
-      }}
+      sx={{ textAlign: 'center', bgcolor: '#000', height: '100%' }}
     >
-      <Box
-        component={RouterLink}
-        to="/"
-        sx={{
-          display: 'block',
-          my: 2,
-        }}
-      >
-        <Box
-          component="img"
-          src={Logo}
-          alt="Cursed Warden Labs Logo"
-          loading="lazy"
-          sx={{ height: 40, mx: 'auto', display: 'block' }}
-        />
-      </Box>
+      <Typography variant="h6" sx={{ my: 2, color: '#c3f73a' }}>
+        Cursed Warden Labs
+      </Typography>
       <List>
         {navItems.map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton
               component={RouterLink}
               to={item.to}
-              sx={{ textAlign: 'center', color: '#ffffff' }}
+              sx={{ textAlign: 'center', color: '#fff' }}
             >
               <ListItemText
                 primary={item.text}
@@ -85,26 +67,14 @@ const Navbar: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-
-          <Box
+          <Typography
+            variant="h6"
             component={RouterLink}
             to="/"
-            sx={{
-              flexGrow: 1,
-              display: 'flex',
-              alignItems: 'center',
-              textDecoration: 'none',
-            }}
+            sx={{ flexGrow: 1, textDecoration: 'none', color: '#c3f73a' }}
           >
-          <Box
-            component="img"
-            src={Logo}
-            alt="Cursed Warden Labs Logo"
-            loading="lazy"
-            sx={{ height: 40 }}
-          />
-          </Box>
-
+            Cursed Warden Labs
+          </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button
@@ -119,7 +89,6 @@ const Navbar: React.FC = () => {
           </Box>
         </Toolbar>
       </AppBar>
-
       <Drawer
         anchor="left"
         open={mobileOpen}
@@ -130,7 +99,7 @@ const Navbar: React.FC = () => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: 240,
-            bgcolor: '#000000',
+            bgcolor: '#000',
           },
         }}
       >
@@ -140,4 +109,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default React.memo(Navbar);
+export default Navbar;
