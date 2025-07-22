@@ -20,7 +20,7 @@ const AboutPage: React.FC = () => (
       <title>Cursed Warden Labs | About Austin Engle</title>
       <meta
         name="description"
-        content="Meet Austin Engle, a customer-focused Full Stack Engineer specializing in React, JavaScript, UI/UX design, and agile delivery."
+        content="Austin Engle is a customer-focused Full Stack Software Engineer specializing in React, JavaScript/TypeScript, UI/UX design, and agile delivery."
       />
       <link rel="canonical" href="https://cursedwardenlabs.com/about" />
     </Helmet>
@@ -49,7 +49,7 @@ const AboutPage: React.FC = () => (
         <Typography variant="subtitle1" paragraph>
           Full Stack Software Engineer
           <br />
-          Maiden, NC •{' '}
+          Maiden, NC &nbsp;•&nbsp;&nbsp;
           <a
             href="https://linkedin.com/in/dev-engle"
             style={{ color: '#c3f73a', textDecoration: 'none' }}
@@ -61,11 +61,14 @@ const AboutPage: React.FC = () => (
         </Typography>
 
         <Button
-          variant="outlined"
-          color="secondary"
+          component="a"
           href="/resume.pdf"
-          target="_blank"
-          sx={{ borderColor: '#c3f73a', color: '#c3f73a', mb: 4 }}
+          download="Austin_Engle_Resume.pdf"
+          sx={{
+            borderColor: '#c3f73a',
+            color: '#c3f73a',
+            mb: 4,
+          }}
         >
           Download Resume
         </Button>
@@ -75,22 +78,24 @@ const AboutPage: React.FC = () => (
           paragraph
           sx={{ maxWidth: 700, mx: 'auto' }}
         >
-          I’m a customer-focused engineer with 6+ years transforming client
-          visions into high-impact web applications. From Figma prototypes to
-          production deployment, I combine UI/UX design with robust
-          React/Node.js architectures, driving measurable gains in
-          responsiveness, engagement, and revenue.
+          Customer-focused Full Stack Software Engineer with 6+ years of
+          experience designing and delivering modern web applications. Expert in
+          React, JavaScript/TypeScript, Material-UI, and UI/UX design. Proven
+          track record improving performance (–25% load time), responsiveness
+          (+30%), and engagement (+40%). Skilled Scrum Master and team
+          collaborator who turns Figma prototypes into scalable,
+          production-ready code.
         </Typography>
       </Container>
 
       <Container maxWidth="md" sx={{ mt: 6 }}>
         <Typography variant="h5" sx={{ color: '#c3f73a', mb: 2 }}>
-          Key Skills & Highlights
+          Core Competencies & Highlights
         </Typography>
         <List>
           <ListItem>
             <ListItemText
-              primary="React • JavaScript/TypeScript • Material-UI"
+              primary="Front-End: React.js, React Native, Material-UI, Angular.js, SASS/CSS, HTML5"
               secondary="Crafted single-page apps and custom components, boosting site performance by 20%."
               primaryTypographyProps={{ color: '#fff', fontWeight: 'bold' }}
               secondaryTypographyProps={{ color: 'grey.400' }}
@@ -99,8 +104,8 @@ const AboutPage: React.FC = () => (
           <Divider sx={{ bgcolor: 'grey.800' }} />
           <ListItem>
             <ListItemText
-              primary="UI/UX & Figma Prototyping"
-              secondary="Designed, reviewed, and implemented client layouts—improving onboarding satisfaction by 20%."
+              primary="Back-End: Node.js, Express, RESTful APIs, Firebase, Contentful"
+              secondary="Built scalable server-side logic and integrated third-party services."
               primaryTypographyProps={{ color: '#fff', fontWeight: 'bold' }}
               secondaryTypographyProps={{ color: 'grey.400' }}
             />
@@ -108,8 +113,17 @@ const AboutPage: React.FC = () => (
           <Divider sx={{ bgcolor: 'grey.800' }} />
           <ListItem>
             <ListItemText
-              primary="Agile Leadership (Scrum Master)"
-              secondary="Orchestrated sprints, stand-ups & retrospectives, elevating team delivery cadence and alignment."
+              primary="UX & Design: Figma, responsive layouts, accessibility"
+              secondary="Designed interactive prototypes and delivered a 20% increase in user satisfaction."
+              primaryTypographyProps={{ color: '#fff', fontWeight: 'bold' }}
+              secondaryTypographyProps={{ color: 'grey.400' }}
+            />
+          </ListItem>
+          <Divider sx={{ bgcolor: 'grey.800' }} />
+          <ListItem>
+            <ListItemText
+              primary="Agile & Leadership: Scrum Master, CI/CD, Docker"
+              secondary="Led sprint planning and automated deployments, reducing release times by 50%."
               primaryTypographyProps={{ color: '#fff', fontWeight: 'bold' }}
               secondaryTypographyProps={{ color: 'grey.400' }}
             />
@@ -118,7 +132,7 @@ const AboutPage: React.FC = () => (
           <ListItem>
             <ListItemText
               primary="Customer Focus & Support"
-              secondary="Maintained 99% uptime on client sites, provided post-launch support, and drove continuous optimizations."
+              secondary="Delivered 99% uptime, provided post-launch support, and drove continuous optimizations."
               primaryTypographyProps={{ color: '#fff', fontWeight: 'bold' }}
               secondaryTypographyProps={{ color: 'grey.400' }}
             />
