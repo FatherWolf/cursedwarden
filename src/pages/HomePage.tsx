@@ -50,16 +50,50 @@ const projects = [
 const HomePage: React.FC = () => (
   <>
     <Helmet>
-      <title>Cursed Warden Labs | Bespoke Web & Software Dev</title>
+      <title>Cursed Warden Labs | Custom Web & Software Development</title>
+
+      {/* Primary meta tags */}
       <meta
         name="description"
-        content="Cursed Warden Labs builds custom React, MUI & WordPress websites, Node.js backends, and marketing strategies that help businesses get up to 80% more traffic."
+        content="Cursed Warden Labs delivers custom React, Node.js & WordPress solutions with Material-UI, plus SEO-driven marketing to boost traffic and revenue."
       />
       <meta
         name="keywords"
-        content="custom web development, WordPress design, React developer, Node.js backend, SEO, digital marketing"
+        content="custom web development, React development, Node.js backend, WordPress design, Material-UI, SEO, digital marketing, software solutions"
       />
+      <meta name="robots" content="index,follow" />
       <link rel="canonical" href="https://cursedwardenlabs.com/" />
+
+      {/* Open Graph / Facebook */}
+      <meta
+        property="og:title"
+        content="Cursed Warden Labs | Custom Web & Software Development"
+      />
+      <meta
+        property="og:description"
+        content="Custom React, Node.js & WordPress solutions with Material-UI, plus SEO-driven marketing to grow your business online."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://cursedwardenlabs.com/" />
+      <meta
+        property="og:image"
+        content="https://cursedwardenlabs.com/social-preview.png"
+      />
+
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:title"
+        content="Cursed Warden Labs | Custom Web & Software Development"
+      />
+      <meta
+        name="twitter:description"
+        content="Custom React, Node.js & WordPress solutions with Material-UI, plus SEO-driven marketing to grow your business online."
+      />
+      <meta
+        name="twitter:image"
+        content="https://cursedwardenlabs.com/social-preview.png"
+      />
     </Helmet>
 
     <Box

@@ -1,0 +1,7 @@
+# robots.txt for Cursed Warden Labs
+
+User-agent: *
+Allow: /
+
+# point search engines to your sitemap
+Sitemap: https://cursedwardenlabs.com/sitemap.xml
