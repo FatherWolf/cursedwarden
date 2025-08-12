@@ -5,23 +5,47 @@ import {
   Box,
   Container,
   Typography,
-  Avatar,
   Button,
   List,
   ListItem,
   ListItemText,
   Divider,
 } from '@mui/material';
-import ProfilePic from '../Images/Profile.png';
+import ProfilePic from '../Images/Profile.webp';
+import ProfilePicPng from '../Images/Profile.png';
+import ProgressiveImage from '../components/ProgressiveImage';
+import StructuredData from '../components/StructuredData';
 
 const AboutPage: React.FC = () => (
   <>
+    <StructuredData type="person" />
+    <StructuredData 
+      type="breadcrumb" 
+      data={{
+        items: [
+          { name: 'Home', url: '/' },
+          { name: 'About', url: '/about' }
+        ]
+      }} 
+    />
     <Helmet>
-      <title>Cursed Warden Labs | About Austin Engle</title>
+      <title>About Austin Engle | Expert Web Developer Charlotte NC | 6+ Years Experience</title>
       <meta
         name="description"
-        content="Austin Engle is a customer-focused Full Stack Software Engineer specializing in React, JavaScript/TypeScript, UI/UX design, and agile delivery."
+        content="Meet Austin Engle, Charlotte NC's premier web developer with 6+ years experience. Expert in React, TypeScript, WordPress & SEO. Based in Maiden NC, serving all of Charlotte metro area. View resume & portfolio."
       />
+      <meta
+        name="keywords"
+        content="Austin Engle web developer, Charlotte NC web developer, React developer Charlotte, full stack developer North Carolina, Maiden NC developer, web developer resume, JavaScript developer Charlotte, TypeScript expert"
+      />
+      <meta name="author" content="Austin Engle" />
+      <meta property="og:title" content="Austin Engle | Expert Web Developer Charlotte NC" />
+      <meta property="og:description" content="Meet Austin Engle, Charlotte NC's premier web developer with 6+ years experience in React, TypeScript, WordPress & SEO." />
+      <meta property="og:type" content="profile" />
+      <meta property="og:url" content="https://cursedwardenlabs.com/about" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content="Austin Engle | Expert Web Developer Charlotte NC" />
+      <meta name="twitter:description" content="Meet Austin Engle, Charlotte NC's premier web developer with 6+ years experience in React, TypeScript, WordPress & SEO." />
       <link rel="canonical" href="https://cursedwardenlabs.com/about" />
     </Helmet>
 
@@ -30,17 +54,28 @@ const AboutPage: React.FC = () => (
       sx={{ bgcolor: '#000', color: '#fff', py: { xs: 6, md: 10 } }}
     >
       <Container maxWidth="sm" sx={{ textAlign: 'center' }}>
-        <Avatar
-          src={ProfilePic}
-          alt="Austin Engle"
+        <Box
           sx={{
             width: 200,
             height: 200,
             mx: 'auto',
             mb: 3,
             border: '3px solid #c3f73a',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-        />
+        >
+          <ProgressiveImage
+            webpSrc={ProfilePic}
+            fallbackSrc={ProfilePicPng}
+            alt="Austin Engle - Expert Web Developer Charlotte NC - 6+ Years Experience React WordPress SEO"
+            loading="eager"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </Box>
 
         <Typography variant="h4" gutterBottom sx={{ color: '#c3f73a' }}>
           Austin Engle

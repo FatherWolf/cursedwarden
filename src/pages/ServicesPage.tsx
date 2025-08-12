@@ -10,25 +10,50 @@ import {
   ListItemText,
   Divider,
 } from '@mui/material';
+import StructuredData from '../components/StructuredData';
 
 const ServicesPage: React.FC = () => (
   <>
+    <StructuredData 
+      type="service" 
+      data={{
+        name: "Professional Web Development Services",
+        description: "Complete web development services including React applications, WordPress websites, SEO optimization, and digital marketing for businesses in Charlotte NC."
+      }} 
+    />
+    <StructuredData 
+      type="breadcrumb" 
+      data={{
+        items: [
+          { name: 'Home', url: '/' },
+          { name: 'Services', url: '/services' }
+        ]
+      }} 
+    />
     <Helmet>
-      <title>Cursed Warden Labs | Our Services</title>
+      <title>Web Development Services Charlotte NC | WordPress, React & SEO</title>
       <meta
         name="description"
-        content="Our Services: Website design & development, WordPress integration, SEO & digital marketing, and client-centric collaboration. Learn how we plan, prototype, and build custom solutions."
+        content="Complete web development services in Charlotte NC: Custom React apps, WordPress websites, SEO optimization, digital marketing & Figma design. Serving Charlotte, Gastonia, Concord. Free consultation!"
       />
       <meta
         name="keywords"
-        content="website design, Figma prototyping, React development, WordPress, SEO services, digital marketing, project planning"
+        content="web development services Charlotte, WordPress development Charlotte NC, React development services, SEO services Charlotte, digital marketing Charlotte, website design Charlotte, Figma prototyping Charlotte, web development consultation"
       />
+      <meta name="author" content="Austin Engle - Cursed Warden Labs" />
+      <meta name="geo.region" content="US-NC" />
+      <meta name="geo.placename" content="Charlotte, NC" />
       <link rel="canonical" href="https://cursedwardenlabs.com/services" />
-      <meta property="og:title" content="Cursed Warden Labs | Our Services" />
+      <meta property="og:title" content="Professional Web Development Services Charlotte NC" />
       <meta
         property="og:description"
-        content="Our Services: Website design & development, WordPress integration, SEO & digital marketing, and client-centric collaboration. Learn how we plan, prototype, and build custom solutions."
+        content="Complete web development services in Charlotte NC: Custom React apps, WordPress websites, SEO optimization, digital marketing. Serving Charlotte metro area with 6+ years experience."
       />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:site_name" content="Cursed Warden Labs" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Professional Web Development Services Charlotte NC" />
+      <meta name="twitter:description" content="Complete web development services in Charlotte NC: Custom React apps, WordPress websites, SEO optimization, digital marketing." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://cursedwardenlabs.com/services" />
       <meta property="og:image" content="https://cursedwardenlabs.com/logo512.png" />

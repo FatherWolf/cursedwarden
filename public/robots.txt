@@ -1,7 +1,23 @@
-# robots.txt for Cursed Warden Labs
+# robots.txt for Cursed Warden Labs - Professional Web Development Charlotte NC
 
 User-agent: *
 Allow: /
+Allow: /about
+Allow: /services  
+Allow: /contact
+Allow: /resume.pdf
 
-# point search engines to your sitemap
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: *.log
+
+# Point search engines to sitemap
 Sitemap: https://cursedwardenlabs.com/sitemap.xml
+
+# Additional info for search engines
+# This site provides professional web development services in Charlotte NC
+# Specializing in React, WordPress, SEO, and digital marketing

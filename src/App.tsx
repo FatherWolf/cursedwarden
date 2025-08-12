@@ -2,10 +2,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import SEOFooter from './components/SEOFooter';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutMe';
 import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';
+import FreeAssetsPage from './pages/FreeAssetsPage';
 
 const App: React.FC = () => (
   <BrowserRouter>
@@ -15,8 +17,10 @@ const App: React.FC = () => (
       <Route path="/about" element={<AboutPage />} />
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/free-assets" element={<FreeAssetsPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    <SEOFooter />
   </BrowserRouter>
 );
 

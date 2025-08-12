@@ -13,6 +13,8 @@ import {
   Button,
 } from '@mui/material';
 import emailjs from '@emailjs/browser';
+import QuoteSuccessModal from '../components/QuoteSuccessModal';
+import StructuredData from '../components/StructuredData';
 
 const PRICES = {
   barebones: 300,
@@ -36,10 +38,14 @@ type Opts = {
   seo: boolean;
   logo: boolean;
   marketing: boolean;
+  freeAudit: boolean;
 };
 
 const ContactPage: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [contact, setContact] = useState({
     firstName: '',
@@ -60,10 +66,18 @@ const ContactPage: React.FC = () => {
     seo: false,
     logo: false,
     marketing: false,
+    freeAudit: false,
   });
 
-  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setContact((c) => ({ ...c, [e.target.name]: e.target.value }));
+  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setContact((c) => ({ ...c, [name]: value }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+  };
 
   // When a starter package is clicked, clear all other base flags
   const selectPackage = (
@@ -94,7 +108,7 @@ const ContactPage: React.FC = () => {
     (
       key: keyof Pick<
         Opts,
-        'hosting' | 'additionalPages' | 'seo' | 'logo' | 'marketing'
+        'hosting' | 'additionalPages' | 'seo' | 'logo' | 'marketing' | 'freeAudit'
       >
     ) =>
     (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -112,9 +126,57 @@ const ContactPage: React.FC = () => {
     (opts.seo ? PRICES.seo : 0) +
     (opts.logo ? PRICES.logo : 0);
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!contact.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+    
+    if (!contact.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
+    
+    if (!contact.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^[\d\s\-()++.]{10,}$/.test(contact.phone.replace(/\s/g, ''))) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+    
+    if (!contact.email.trim()) {
+      newErrors.email = 'Email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!contact.message.trim()) {
+      newErrors.message = 'Project details are required';
+    } else if (contact.message.trim().length < 10) {
+      newErrors.message = 'Please provide more details (at least 10 characters)';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formRef.current) return;
+    if (!formRef.current || isSubmitting) return;
+
+    // Validate form before submission
+    if (!validateForm()) {
+      // Scroll to first error
+      const firstErrorField = Object.keys(errors)[0];
+      if (firstErrorField) {
+        document.querySelector(`[name="${firstErrorField}"]`)?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+      return;
+    }
+
+    setIsSubmitting(true);
 
     emailjs
       .sendForm(
@@ -123,21 +185,77 @@ const ContactPage: React.FC = () => {
         formRef.current,
         process.env.REACT_APP_EMAILJS_USER_ID!
       )
-      .then(() => alert('Your quote request has been sent!'))
+      .then(() => {
+        setShowSuccessModal(true);
+        // Reset form
+        setContact({
+          firstName: '',
+          lastName: '',
+          phone: '',
+          email: '',
+          message: '',
+        });
+        setOpts({
+          barebones: false,
+          basicWebsite: false,
+          reactApp: false,
+          ecommerce: false,
+          hosting: true,
+          additionalPages: false,
+          additionalPagesQty: 1,
+          seo: false,
+          logo: false,
+          marketing: false,
+          freeAudit: false,
+        });
+      })
       .catch((err) => {
         console.error(err);
         alert('Oops—something went wrong sending your request.');
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
   };
 
   return (
     <>
+      <StructuredData 
+        type="service" 
+        data={{
+          name: "Free Web Development Quote",
+          description: "Get a free, detailed quote for your web development project. Packages starting at $300 for React websites, WordPress development, and SEO services."
+        }} 
+      />
+      <StructuredData 
+        type="breadcrumb" 
+        data={{
+          items: [
+            { name: 'Home', url: '/' },
+            { name: 'Contact', url: '/contact' }
+          ]
+        }} 
+      />
       <Helmet>
-        <title>Cursed Warden Labs | Request a Quote</title>
+        <title>Get Free Web Development Quote Charlotte NC | $300-$3500 Packages</title>
         <meta
           name="description"
-          content="Quick-start packages from $300–$3,500 plus custom add-ons. Request your tailored web or software quote now."
+          content="Free web development quote in Charlotte NC! Affordable packages from $300-$3500. React websites, WordPress development, SEO services. Same-day response guaranteed. Serving Charlotte metro area."
         />
+        <meta
+          name="keywords"
+          content="web development quote Charlotte, free website quote Charlotte NC, affordable web development, WordPress quote Charlotte, React development pricing, Charlotte web developer contact, Maiden NC web development"
+        />
+        <meta name="author" content="Austin Engle - Cursed Warden Labs" />
+        <meta name="geo.region" content="US-NC" />
+        <meta name="geo.placename" content="Charlotte, NC" />
+        <meta property="og:title" content="Get Free Web Development Quote Charlotte NC" />
+        <meta property="og:description" content="Free web development quote in Charlotte NC! Affordable packages from $300-$3500. React websites, WordPress development, SEO services." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://cursedwardenlabs.com/contact" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Get Free Web Development Quote Charlotte NC" />
+        <meta name="twitter:description" content="Free web development quote in Charlotte NC! Affordable packages from $300-$3500. Same-day response guaranteed." />
         <link rel="canonical" href="https://cursedwardenlabs.com/contact" />
       </Helmet>
 
@@ -272,6 +390,11 @@ const ContactPage: React.FC = () => {
               name="marketing"
               value={opts.marketing ? 'Yes' : 'No'}
             />
+            <input
+              type="hidden"
+              name="freeAudit"
+              value={opts.freeAudit ? 'Yes' : 'No'}
+            />
             <input type="hidden" name="total" value={total.toString()} />
 
             <Stack spacing={3}>
@@ -284,8 +407,13 @@ const ContactPage: React.FC = () => {
                   label="First Name"
                   value={contact.firstName}
                   onChange={handleContactChange}
+                  error={!!errors.firstName}
+                  helperText={errors.firstName}
                   InputProps={{
                     sx: { bgcolor: '#1c1018', color: '#fff' },
+                  }}
+                  FormHelperTextProps={{
+                    sx: { color: '#f44336' },
                   }}
                 />
                 <TextField
@@ -295,8 +423,13 @@ const ContactPage: React.FC = () => {
                   label="Last Name"
                   value={contact.lastName}
                   onChange={handleContactChange}
+                  error={!!errors.lastName}
+                  helperText={errors.lastName}
                   InputProps={{
                     sx: { bgcolor: '#1c1018', color: '#fff' },
+                  }}
+                  FormHelperTextProps={{
+                    sx: { color: '#f44336' },
                   }}
                 />
               </Stack>
@@ -308,8 +441,13 @@ const ContactPage: React.FC = () => {
                 label="Phone Number"
                 value={contact.phone}
                 onChange={handleContactChange}
+                error={!!errors.phone}
+                helperText={errors.phone}
                 InputProps={{
                   sx: { bgcolor: '#1c1018', color: '#fff' },
+                }}
+                FormHelperTextProps={{
+                  sx: { color: '#f44336' },
                 }}
               />
               <TextField
@@ -320,8 +458,13 @@ const ContactPage: React.FC = () => {
                 type="email"
                 value={contact.email}
                 onChange={handleContactChange}
+                error={!!errors.email}
+                helperText={errors.email}
                 InputProps={{
                   sx: { bgcolor: '#1c1018', color: '#fff' },
+                }}
+                FormHelperTextProps={{
+                  sx: { color: '#f44336' },
                 }}
               />
 
@@ -334,8 +477,13 @@ const ContactPage: React.FC = () => {
                 minRows={4}
                 value={contact.message}
                 onChange={handleContactChange}
+                error={!!errors.message}
+                helperText={errors.message || 'Please describe your project requirements in detail'}
                 InputProps={{
                   sx: { bgcolor: '#1c1018', color: '#fff' },
+                }}
+                FormHelperTextProps={{
+                  sx: { color: errors.message ? '#f44336' : 'grey.400' },
                 }}
               />
 
@@ -426,6 +574,16 @@ const ContactPage: React.FC = () => {
                 }
                 label="Marketing & Ad Management (custom pricing)"
               />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={opts.freeAudit}
+                    onChange={handleToggle('freeAudit')}
+                    sx={{ color: '#c3f73a' }}
+                  />
+                }
+                label="Free Website Audit — Included"
+              />
 
               {/* Total & Submit */}
               <Box sx={{ textAlign: 'right', mt: 2 }}>
@@ -435,14 +593,19 @@ const ContactPage: React.FC = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
+                disabled={isSubmitting}
                 sx={{
                   bgcolor: '#c3f73a',
                   color: '#000',
                   py: 1.5,
                   '&:hover': { bgcolor: '#a6e12f' },
+                  '&:disabled': {
+                    bgcolor: '#666',
+                    color: '#999',
+                  },
                 }}
               >
-                Send Quote Request
+                {isSubmitting ? 'Sending...' : 'Send Quote Request'}
               </Button>
               <Typography
                 variant="caption"
@@ -454,6 +617,12 @@ const ContactPage: React.FC = () => {
             </Stack>
           </Box>
         </Container>
+        
+        {/* Success Modal */}
+        <QuoteSuccessModal
+          open={showSuccessModal}
+          onClose={() => setShowSuccessModal(false)}
+        />
       </Box>
     </>
   );
